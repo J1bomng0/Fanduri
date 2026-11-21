@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ფანდური</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="frame">
+
+    <!-- Borjgali (Georgian sun symbol) -->
+    <svg class="sun" viewBox="-50 -50 100 100" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <circle r="8" fill="currentColor" stroke="none"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(51.4)"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(102.9)"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(154.3)"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(205.7)"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(257.1)"/>
+        <path d="M0 -12 C14 -18 22 -30 14 -44" transform="rotate(308.6)"/>
+      </g>
+    </svg>
+
+    <h1>ფანდური</h1>
+    <div class="rule">✦</div>
+    <p class="sub">სიმები · Strum <b>A S D</b> &nbsp;|&nbsp; აკორდები · Hold <b>J K L ;</b></p>
+
+    <div class="keys">
+      <button class="fanduri a" data-key="a" aria-label="String A">
+        <div class="inner"><span class="string"></span><span class="hole"></span><span class="letter">a</span><span class="note">I</span></div>
+      </button>
+      <button class="fanduri s" data-key="s" aria-label="String S">
+        <div class="inner"><span class="string"></span><span class="hole"></span><span class="letter">s</span><span class="note">II</span></div>
+      </button>
+      <button class="fanduri d" data-key="d" aria-label="String D">
+        <div class="inner"><span class="string"></span><span class="hole"></span><span class="letter">d</span><span class="note">III</span></div>
+      </button>
+    </div>
+
+    <p class="now">აკორდი · Chord: <b id="chordName">G</b></p>
+    <div class="chords">
+      <button class="chord" data-chord="C"  data-key="j" aria-label="Chord C"><span class="ck">J</span><span class="cn">C</span></button>
+      <button class="chord" data-chord="D"  data-key="k" aria-label="Chord D"><span class="ck">K</span><span class="cn">D</span></button>
+      <button class="chord" data-chord="Em" data-key="l" aria-label="Chord Em"><span class="ck">L</span><span class="cn">Em</span></button>
+      <button class="chord" data-chord="Am" data-key=";" aria-label="Chord Am"><span class="ck">;</span><span class="cn">Am</span></button>
+    </div>
+
+    <p class="hint">ჩართე აკორდი და დაუკარი სიმებს · hold a chord, then strum</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

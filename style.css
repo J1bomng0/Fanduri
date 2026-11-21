@@ -1,0 +1,199 @@
+:root {
+  --cream: #faf5e6;
+  --sand: #f5dfb5;
+  --sand-dark: #ecd09a;
+  --blue: #6cb0c8;
+  --blue-dark: #4f9ab5;
+  --rust: #c4573c;
+  --ink: #4a2f22;
+  --line: #d4c38a;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-family: "Noto Serif Georgian", "Sylfaen", "DejaVu Serif", Georgia, serif;
+  background: var(--cream) url("pattern.jpg") repeat;
+  background-size: 150px 150px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- Frame ---------- */
+.frame {
+  width: min(920px, calc(100% - 28px));
+  margin: 14px auto;
+  padding: clamp(18px, 4vw, 44px) clamp(12px, 3vw, 40px) clamp(22px, 4vw, 40px);
+  text-align: center;
+  background: rgba(250, 245, 230, 0.94);
+  border: 3px solid var(--blue);
+  outline: 2px solid var(--line);
+  outline-offset: 5px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(74, 47, 34, 0.18);
+}
+
+/* ---------- Header ---------- */
+.sun {
+  width: clamp(64px, 12vw, 96px);
+  height: auto;
+  color: var(--rust);
+  animation: spin 40s linear infinite;
+}
+.sun.pulse { animation: spin 40s linear infinite, pulse 0.35s ease-out; }
+
+@keyframes spin  { to { transform: rotate(360deg); } }
+@keyframes pulse {
+  0%   { filter: none; }
+  40%  { filter: drop-shadow(0 0 14px #d9624a); }
+  100% { filter: none; }
+}
+
+h1 {
+  margin: 6px 0 4px;
+  font-weight: 900;
+  font-size: clamp(38px, 9vw, 76px);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--rust);
+  text-shadow: 2px 2px 0 var(--sand);
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 420px;
+  margin: 6px auto 0;
+  color: var(--rust);
+}
+.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.sub  { margin: 10px 0 0; font-size: clamp(13px, 2.4vw, 16px); letter-spacing: 0.06em; opacity: 0.85; }
+.hint { margin-top: clamp(20px, 4vw, 34px); font-size: clamp(12px, 2.2vw, 14px); opacity: 0.7; }
+
+/* ---------- Buttons (arched like a church doorway) ---------- */
+.keys {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 3.5vw, 36px);
+  margin-top: clamp(22px, 5vw, 44px);
+}
+
+.fanduri {
+  flex: 0 1 190px;
+  aspect-ratio: 3 / 4.1;
+  padding: 5px;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  background: var(--blue);
+  border-radius: 999px 999px 14px 14px;
+  box-shadow: 0 6px 14px rgba(74, 47, 34, 0.25);
+  transition: transform 0.08s, filter 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.fanduri:hover { filter: brightness(1.06); }
+.fanduri:focus-visible { outline: 3px solid var(--rust); outline-offset: 4px; }
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  padding-bottom: clamp(10px, 2.4vw, 22px);
+  overflow: hidden;
+  background: var(--sand);
+  border-radius: 999px 999px 10px 10px;
+}
+
+.string {
+  position: absolute;
+  left: 50%;
+  top: 9%;
+  bottom: 30%;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--blue-dark);
+  border-radius: 2px;
+}
+
+.hole {
+  position: absolute;
+  left: 50%;
+  bottom: 26%;
+  width: 22%;
+  aspect-ratio: 1;
+  margin-left: -11%;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.letter {
+  position: relative;
+  font-weight: 900;
+  font-size: clamp(30px, 7vw, 56px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.note { position: relative; margin-top: 4px; font-size: clamp(10px, 2vw, 13px); letter-spacing: 0.1em; opacity: 0.75; }
+
+/* ---------- Animations triggered from script.js ---------- */
+.fanduri.pressed { transform: translateY(5px) scale(0.98); filter: brightness(1.12); }
+.fanduri.pressed .inner { background: var(--sand-dark); }
+.fanduri.vibrate .string { animation: vibrate 0.5s ease-out; }
+
+@keyframes vibrate {
+  0%   { transform: scaleX(5); }
+  15%  { transform: scaleX(-4); }
+  30%  { transform: scaleX(3); }
+  45%  { transform: scaleX(-2); }
+  60%  { transform: scaleX(1.5); }
+  100% { transform: scaleX(1); }
+}
+
+/* ---------- Chord buttons (left-hand frets) ---------- */
+.now { margin: clamp(18px, 3.5vw, 30px) 0 10px; font-size: clamp(13px, 2.4vw, 16px); letter-spacing: 0.06em; }
+.now b { color: var(--rust); font-size: 1.25em; }
+
+.chords { display: flex; justify-content: center; gap: clamp(10px, 2.5vw, 22px); }
+
+.chord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(54px, 11vw, 78px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 4px solid var(--rust);
+  border-radius: 50%;
+  background: var(--sand);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(74, 47, 34, 0.25);
+  transition: transform 0.08s, background 0.15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.chord:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.chord .ck { font-size: clamp(10px, 2vw, 12px); opacity: 0.65; line-height: 1; }
+.chord .cn { font-size: clamp(16px, 3.6vw, 24px); font-weight: 900; color: var(--rust); line-height: 1.15; }
+.chord.held { background: var(--rust); transform: translateY(3px) scale(0.96); }
+.chord.held .cn, .chord.held .ck { color: var(--cream); opacity: 1; }
